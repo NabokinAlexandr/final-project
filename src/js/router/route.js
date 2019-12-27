@@ -5,7 +5,7 @@ class Route {
         this.default = defaultRoute;
     }
     isActiveRoute(hashedPath) {
-        return hashedPath.replace('#', '') === this.name;
+        return hashedPath.replace('/#', '') === this.name;
     }
 }
 export {Route};
