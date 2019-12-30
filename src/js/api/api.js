@@ -1,6 +1,6 @@
 const axios = require('axios');
 const api = axios.create({
-  baseURL: 'http://localhost:5000/',
+  baseURL: 'http://localhost:5000/'
 });
 class Apis {
   getUser(id) {
@@ -14,6 +14,15 @@ class Apis {
   }
   editUser(user) {
     return api.put(`users/${user.id}`, user);
-  } 
+  }
+  setCurrentUser(user) {
+    return api.post('currentUser', user);
+  }
+  getCurrentUser() {
+    return api.get('currentUser');
+  }
+  removeCurrentUser(id) {
+    return api.delete(`currentUser/${id}`);
+  }
 }
 export {Apis};
