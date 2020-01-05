@@ -1,33 +1,25 @@
-import {User} from './js/user.js';
-import {Validator} from './js/validator.js';
-import {Apis} from './js/api/api.js';
 import './js/router/router-initiation.js';
+import './js/actions/addUser.js';
+import './js/actions/logInOut.js';
+import './js/actions/mapUserData.js';
+import {Apis} from './js/api/api.js';
 (function() {
-    function register(event) {
-        event.preventDefault();
-        const name = event.target.querySelector('#js-reg-name').value,
-        pass = event.target.querySelector('#js-reg-pass').value,
-        passConfirmed = event.target.querySelector('#js-reg-confirm-pass').value,
-        nameValidator = new Validator('string', name, 'Name'),
-        passValidator = new Validator('string', pass, 'Password'),
-        nameIsValid = nameValidator.validate(),
-        passIsValid = passValidator.validate(),
-        passIsEqual = pass === passConfirmed,
-        messageBlock = event.target.querySelector('js-reg-form-message');
-
-        if (nameIsValid.status === 'fail') {
-            const p = document.createElement('p');
-            p.innerHTML = nameIsValid.text;
-            p.classList.add('error');
-            messageBlock.appendChild(p);
-        } else {
-            if (!passIsEqual) {
-                const p = document.createElement('p');
-                p.innerHTML = 'Passwords are not equal';
-                p.classList.add('error');
-                messageBlock.appendChild(p);
+    window.onload = function() {
+        const api = new Apis();
+        api.getCurrentUser()
+        .then(resp => {
+            if (resp.data.length > 0) {
+                document.querySelector('#js-reg-form').classList.add('hidden');
+                document.querySelector('#js-login-form').classList.add('hidden');
+                document.querySelector('#js-logout').classList.remove('hidden');
+                document.querySelector('.js-user-link').classList.remove('hidden');
+            } else {
+                document.querySelector('#js-reg-form').classList.remove('hidden');
+                document.querySelector('#js-login-form').classList.remove('hidden');
+                document.querySelector('#js-logout').classList.add('hidden');
+                document.querySelector('.js-user-link').classList.add('hidden');
             }
-        }
-    }
-    document.querySelector('#js-reg-form').addEventListener('submit', register);
+        })
+        .catch(err => console.error(new Error(err)));
+    };
 }());

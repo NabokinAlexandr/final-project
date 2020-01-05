@@ -9,10 +9,24 @@
     <body>
         <ul>
             <li><a href="/#default">regular page</a></li>
-            <li><a href="/#user-page">user-page</a></li>
+            <li class="js-user-link hidden"><a href="/#user-page">user-page</a></li>
             <li><a href="/#contacts">contacts</a></li>
             <li><a href="/#home">home</a></li>
         </ul>
+        <form class='form' id="js-reg-form">
+            <input type="text" class="form-input" placeholder="Your name" id="js-reg-name">
+            <input type="password" class="form-input" placeholder="Your password" id="js-reg-pass">
+            <input type="password" class="form-input" placeholder="Confirm your password" id="js-reg-confirm-pass">
+            <button type="submit" class="form-button">Register</button>
+            <div class="form-message js-reg-form-message"></div>
+        </form>
+        <form class='form' id="js-login-form">
+            <input type="text" class="form-input" placeholder="Your name" id="js-login-name">
+            <input type="password" class="form-input" placeholder="Your password" id="js-login-pass">
+            <button type="submit" class="form-button">Log in</button>
+            <div class="form-message js-login-form-message"></div>
+        </form>
+        <button type="button" id="js-logout" class="form-button hidden">Log out</button>
         <div id="app"></div>
     </body>
 </html>

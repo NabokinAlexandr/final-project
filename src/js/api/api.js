@@ -3,6 +3,9 @@ const api = axios.create({
   baseURL: 'http://localhost:5000/'
 });
 class Apis {
+  getUsers() {
+    return api.get('users');
+  }
   getUser(id) {
     return api.get(`users/${id}`);
   }
@@ -16,10 +19,21 @@ class Apis {
     return api.put(`users/${user.id}`, user);
   }
   setCurrentUser(user) {
-    return api.post('currentUser', user);
+    this.getCurrentUser()
+    .then(
+      resp => {
+        if (resp.data.length > 0) {
+          this.removeCurrentUser(resp.data[0].id);
+        }
+        return api.post('currentUser', user);
+      })
+    .catch(err => console.error(new Error(err)));
   }
   getCurrentUser() {
     return api.get('currentUser');
+  }
+  editCurrentUser(user) {
+    return api.put(`currentUser/${user.id}`, user);
   }
   removeCurrentUser(id) {
     return api.delete(`currentUser/${id}`);

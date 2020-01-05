@@ -1,33 +1,23 @@
 class Validator {
-    constructor(type, inputValue, field) {
-        this.type = type;
+    constructor(inputValue, field) {
         this.data = inputValue;
         this.field = field;
         this.message = '';
     }
     validate() {
-        if (this.checkType()) {
-            this.createMessage('Thank you for registration!');
+        if (this.checkValue()) {
+            return this.createMessage('Thank you for registration!');
         } else {
-            this.createError(this.message);
+            return this.createError(this.message);
         }
     }
-    checkType() {
-        if (this.type === typeof(inputValue)) {
-            this.checkValue ();
-        } else {
-            this.message = `${this.field} is not valid`;
-            return false;
-        }
-    }
-
     checkValue() {
         if (this.data.trim().length === 0) {
             this.message = `${this.field} field can't be empty`;
             return false;
         } else {
-            if (this.field === 'password') {
-                this.passValidate();
+            if (this.field.toLowerCase() === 'password') {
+                return this.passValidate();
             } else {
                 return true;
             }
