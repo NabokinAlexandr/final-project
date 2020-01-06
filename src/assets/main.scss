@@ -1,4 +1,12 @@
-.active{
-    color: yellow;
-    background-color: red;
+@import "./styles/reset.scss";
+@import "./styles/variables.scss";
+* {
+    font-family: $fontNormal;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    color: $default;
+}
+.hidden {
+    display: none;
 }
