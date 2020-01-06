@@ -6,7 +6,7 @@ function userProfile(user) {
                 <h2 class='modal-heading'>${user.name}</h2>
                 <img class=${user.userPic.trim().length === '' ? 'user-pic hidden' : 'user-pic'} src= ${user.userPic}>
                 <form class='form js-change-user-info'>
-                    <label class='form-label' for='js-add-photo'> Add or update your photo </label>
+                    <label class='form-label' for='js-add-userpic'> Add or update your photo </label>
                     <input type='file' name='pic' accept='image/*' id='js-add-userpic' class='form-photo modal-button'>
                     <textarea class='form-textarea js-user-info' placeholder='Share your story'></textarea>
                     <label class='form-label'>Change your name</label>
@@ -17,6 +17,7 @@ function userProfile(user) {
                     <input type='password' class='form-input js-confirm-new-pass'>
                     <button type='submit' class='form-button'>Change profile</button>
                     <button type='button' class='form-button js-remove-user'>Remove profile</button>
+                    <div class="form-message js-user-form-message"></div>
                 </form>
             </div>
         </div>
