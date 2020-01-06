@@ -18,7 +18,6 @@ import {mapUserData} from './mapUserData.js';
                     document.querySelector('#js-login-form').classList.add('hidden');
                     document.querySelector('#js-logout').classList.remove('hidden');
                     document.querySelector('.js-user-link').classList.remove('hidden');
-                    mapUserData(currentUser[0]);
                 } else {
                     p.innerHTML = 'User credentials are invalid. Please, check your password and name';
                     messageBlock.appendChild(p);
