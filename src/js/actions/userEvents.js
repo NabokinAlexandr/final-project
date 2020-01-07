@@ -42,63 +42,81 @@ function checkPass(userPass, confirmedPass) {
         message: message
     };
 }
-function changeUserProfile(user) {
-    const userName = document.querySelector('.js-change-user-name').value,
-    userInfo = document.querySelector('.js-user-info').value,
-    userPic = document.querySelector('#js-add-userpic').files ? document.querySelector('#js-add-userpic').files[0] : null,
-    userPass = document.querySelector('.js-change-pass').value,
-    confirmedPass = document.querySelector('.js-confirm-new-pass').value,
-    messageBlock = document.querySelector('.js-user-form-message'),
-    p = document.createElement('p');
-    let status = true, message = 'Your profile was updated!';
-    //  check if user password was changed
-    if (userPass && userPass.trim() !== '' || confirmedPass && confirmedPass.trim() !== '') {
-        //  check if new pass is valid
-        const result = checkPass(userPass, confirmedPass);
-        status = result.status;
-        message = result.message;
-        //  if new pass is valid - change user pass
-        user.pass = result.status === true ? userPass : user.pass;
-    }
-    //  if userPic was changed - add userPic
+function changeUserPic(user) {
+    const userPic = document.querySelector('#js-add-userpic').files ? document.querySelector('#js-add-userpic').files[0] : null;
     if (userPic) {
         const reader = new FileReader();
         reader.readAsDataURL(userPic);
         reader.onload = () => {
             user.userPic = reader.result;
+            editUser(user);
         };
         reader.onerror = () => console.error(new Error(reader.error));
     }
-    //  if text fields were changed - change user name, data
-    user.data = userInfo ? userInfo.trim() : user.data;
-    user.name = userName && userName.trim !== '' ? userName : user.name;
-    //  remove old messages, create new error or success message
+}
+function changeUserPass(user) {
+    const oldPass = document.querySelector('.js-old-pass').value,
+    userPass = document.querySelector('.js-change-pass').value,
+    confirmedPass = document.querySelector('.js-confirm-new-pass').value,
+    messageBlock = document.querySelector('.js-change-user-password .js-user-form-message'),
+    p = document.createElement('p');
+    let status = true, message = 'Your profile was updated!';
+    if (oldPass === user.pass) {
+        if (userPass && userPass.trim() !== '' || confirmedPass && confirmedPass.trim() !== '') {
+            const result = checkPass(userPass, confirmedPass);
+            status = result.status;
+            message = result.message;
+            if (status === true) {
+                user.pass = userPass;
+                editUser(user);
+            } else {
+                p.classList.add('error');
+            }
+        }
+    } else {
+        p.classList.add('error');
+        message = 'You entered an invalid current password! Please, check it and try to fill form again.';
+    }
     while (messageBlock.hasChildNodes()) {
         messageBlock.removeChild(messageBlock.firstChild);
     }
     p.innerHTML = message;
-    //  if all is ok - set new user to backend and show success message, else - show error message
-    if (status === true) {
-        editUser(user);
-        messageBlock.appendChild(p);
-    } else {
-        p.classList.add('error');
-        messageBlock.appendChild(p);
+    messageBlock.appendChild(p);
+}
+function changeUserProfile(user) {
+    const userName = document.querySelector('.js-change-user-name').value,
+    userInfo = document.querySelector('.js-user-info').value,
+    messageBlock = document.querySelector('.js-change-user-info .js-user-form-message'),
+    p = document.createElement('p');
+    p.innerHTML = 'Your profile was updated!';
+    user.data = userInfo ? userInfo.trim() : user.data;
+    user.name = userName && userName.trim !== '' ? userName : user.name;
+    while (messageBlock.hasChildNodes()) {
+        messageBlock.removeChild(messageBlock.firstChild);
     }
+    editUser(user);
+    messageBlock.appendChild(p);
 }
 function removeUser(user) {
-    const api = new Apis();
-    api.removeCurrentUser(user.id)
-    .then(
-        ()=> {
-            api.removeUser(user.id);
-            document.querySelector('#js-reg-form').classList.remove('hidden');
-            document.querySelector('#js-login-form').classList.remove('hidden');
-            document.querySelector('#js-logout').classList.add('hidden');
-            document.querySelector('.js-user-link').classList.add('hidden');
-        })
-    .then (()=>location.replace('http://localhost:3000'))
-    .catch(err => console.error(new Error(err)));
+    const pass = document.querySelector('.js-remove-user .js-confirm-pass').value;
+    if (pass === user.pass) {
+        const api = new Apis();
+        api.removeCurrentUser(user.id)
+        .then(
+            ()=> {
+                api.removeUser(user.id);
+                document.querySelector('#js-reg-form').classList.remove('hidden');
+                document.querySelector('#js-login-form').classList.remove('hidden');
+                document.querySelector('#js-logout').classList.add('hidden');
+                document.querySelector('.js-user-link').classList.add('hidden');
+            })
+        .then (()=>location.replace('http://localhost:3000'))
+        .catch(err => console.error(new Error(err)));
+    } else {
+        const messageBlock = document.querySelector('.js-remove-user .js-user-form-message');
+        messageBlock.innerHTML = '<p class="error">You entered an invalid password! If you really want to remove your account, check your password and try again.</p>';
+    }
+    
 }
 function createEvents(user) {
     document.querySelector('.js-add-post').addEventListener('submit', function(event) {
@@ -117,12 +135,20 @@ function createEvents(user) {
         document.querySelector('#js-modal').classList.add('hidden');
         location.replace('http://localhost:3000/#user-page');
     };
+    document.querySelector('.js-change-user-pic').addEventListener('change', function(event) {
+        changeUserPic(user);
+    });
     document.querySelector('.js-change-user-info').addEventListener('submit', function(event) {
         event.preventDefault();
         changeUserProfile(user);
     });
-    document.querySelector('.js-remove-user').addEventListener('click', function() {
+    document.querySelector('.js-change-user-password').addEventListener('submit', function(event) {
+        event.preventDefault();
+        changeUserPass(user);
+    });
+    document.querySelector('.js-remove-user').addEventListener('submit', function() {
+        event.preventDefault();
         removeUser(user);
-    }); 
+    });
 }
 export {createEvents};
