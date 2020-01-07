@@ -5,6 +5,7 @@ import './js/actions/mapUserData.js';
 import {Apis} from './js/api/api.js';
 import {mapUserData} from './js/actions/mapUserData.js';
 import {mapAllUsersPosts} from './js/actions/mapAllUsersPosts.js';
+import './js/actions/hashChange.js';
 (function() {
     window.onload = function() {
         const api = new Apis();

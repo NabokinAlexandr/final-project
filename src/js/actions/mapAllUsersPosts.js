@@ -34,20 +34,4 @@ function mapAllUsersPosts(users) {
         xhr.send();
     });
 }
-(function() {
-    window.addEventListener('hashchange', function() {
-        if (window.location.hash.substr(1).replace('/#', '') === 'home') {
-            const api = new Apis();
-            api.getUsers()
-            .then(resp => {
-                if (resp.data.length > 0) {
-                    mapAllUsersPosts(resp.data);
-                } else {
-                    return;
-                }
-            })
-            .catch(err => console.error(new Error(err)));
-        }
-    });
-}());
 export {mapAllUsersPosts};

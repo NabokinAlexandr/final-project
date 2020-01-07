@@ -1,4 +1,3 @@
-import {Apis} from '../api/api.js';
 import {postForm} from '../templates/post-form.js';
 import {userProfile} from '../templates/user-profile.js';
 import {postTemplate} from '../templates/post-template.js';
@@ -30,20 +29,4 @@ function mapUserData(user) {
         document.querySelector('#app').innerHTML = '<h1>Please, log in or register</h1>';
     }
 }
-(function() {
-    window.addEventListener('hashchange', function() {
-        if (window.location.hash.substr(1).replace('/#', '') === 'user-page') {
-            const api = new Apis();
-        api.getCurrentUser()
-        .then(resp => {
-            if (resp.data.length > 0) {
-                mapUserData(resp.data[0]);
-            } else {
-                mapUserData();
-            }
-        })
-        .catch(err => console.error(new Error(err)));
-            }
-        });
-}());
 export {mapUserData};
