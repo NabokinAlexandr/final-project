@@ -1,6 +1,7 @@
 import {Post} from '../libs/post.js';
 import {Validator} from '../libs/validator.js';
 import {editUser} from './editUser.js';
+import {mapUserData} from './mapUserData.js';
 import {Apis} from '../api/api.js';
 function createPost(user) {
     const heading = document.querySelector('.js-post-heading').value,
@@ -50,6 +51,7 @@ function changeUserPic(user) {
         reader.onload = () => {
             user.userPic = reader.result;
             editUser(user);
+            document.querySelector('#js-modal .user-pic').src = user.userPic;
         };
         reader.onerror = () => console.error(new Error(reader.error));
     }
@@ -122,10 +124,12 @@ function createEvents(user) {
     document.querySelector('.js-add-post').addEventListener('submit', function(event) {
         event.preventDefault();
         createPost(user);
+        mapUserData(user);
     });
     document.querySelector('.js-post-list').addEventListener('click', function(event) {
         if (event.target.classList.contains('js-remove-post')) {
             removePost(event.target, user);
+            mapUserData(user);
         } else {
             return;
         }
