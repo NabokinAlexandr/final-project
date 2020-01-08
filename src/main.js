@@ -4,7 +4,9 @@ import './js/actions/addUser.js';
 import './js/actions/logInOut.js';
 import './js/actions/mapUserData.js';
 import {Apis} from './js/api/api.js';
-import { mapUserData } from './js/actions/mapUserData.js';
+import {mapUserData} from './js/actions/mapUserData.js';
+import {mapAllUsersPosts} from './js/actions/mapAllUsersPosts.js';
+import './js/actions/hashChange.js';
 (function() {
     window.onload = function() {
         const api = new Apis();
@@ -35,5 +37,16 @@ import { mapUserData } from './js/actions/mapUserData.js';
             }
         })
         .catch(err => console.error(new Error(err)));
+        if (window.location.hash.substr(1).replace('/#', '') === 'home' || window.location.hash.substr(1) === '') {
+            api.getUsers()
+            .then(resp => {
+                if (resp.data.length > 0) {
+                    mapAllUsersPosts(resp.data);
+                } else {
+                    return;
+                }
+            })
+            .catch(err => console.error(new Error(err)));   
+        }
     };
 }());
