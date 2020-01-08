@@ -8,27 +8,43 @@
     </head>
     <body>
         <header>
-           <div class="logo"></div>
-           <input type="text" id="search">
-           <ul>
-                <li><a href="/#home">home</a></li>
+            <ul class="navi">
+                <li><a href="/#home" class="logo">home</a></li>
                 <li class="js-user-link hidden toUserpage"><a href="/#user-page">user-page</a></li>
+            </ul>
+            <input type="text" id="search">
+            <ul class="regLog">
+                <li>Login</li>
+                <li>Register</li>
             </ul>
         </header>
 
-        <form class='form' id="js-reg-form">
-            <input type="text" class="form-input" placeholder="Your name" id="js-reg-name">
-            <input type="password" class="form-input" placeholder="Your password" id="js-reg-pass">
-            <input type="password" class="form-input" placeholder="Confirm your password" id="js-reg-confirm-pass">
-            <button type="submit" class="form-button">Register</button>
-            <div class="form-message js-reg-form-message"></div>
-        </form>
-        <form class='form' id="js-login-form">
-            <input type="text" class="form-input" placeholder="Your name" id="js-login-name">
-            <input type="password" class="form-input" placeholder="Your password" id="js-login-pass">
-            <button type="submit" class="form-button">Log in</button>
-            <div class="form-message js-login-form-message"></div>
-        </form>
+        <div id="myModalReg" class="modal">
+            <div class="modal-content">
+                <span class="close">X</span>
+                <form class='form' id="js-reg-form">
+                    <input type="text" class="form-input" placeholder="Your name" id="js-reg-name">
+                    <input type="password" class="form-input" placeholder="Your password" id="js-reg-pass">
+                    <input type="password" class="form-input" placeholder="Confirm your password" id="js-reg-confirm-pass">
+                    <button type="submit" class="form-button">Register</button>
+                    <div class="form-message js-reg-form-message"></div>
+                </form>
+            </div>
+        </div>
+
+        <div id="myModalLogin" class="modal">
+            <div class="modal-content">
+                <span class="close">X</span>
+                <form class='form' id="js-login-form">
+                    <input type="text" class="form-input" placeholder="Your name" id="js-login-name">
+                    <input type="password" class="form-input" placeholder="Your password" id="js-login-pass">
+                    <button type="submit" class="form-button">Log in</button>
+                    <div class="form-message js-login-form-message"></div>
+                </form>
+            </div>
+        </div>
+
+
         <button type="button" id="js-logout" class="form-button hidden">Log out</button>
 
         <div id="app"></div>

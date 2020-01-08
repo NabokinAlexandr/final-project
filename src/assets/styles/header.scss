@@ -1,0 +1,25 @@
+@mixin font {
+  font-size: 5px;
+  color: #000000;
+}
+
+header {
+    @include font;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap-reverse;
+    width: 100%;
+    height: 77px;
+    position: fixed;
+    border: solid 1px #dbdbdb;
+    .logo {
+        color: red;
+    }
+
+    li {
+        display: block;
+        border: solid 1px black;
+    }
+    
+}
