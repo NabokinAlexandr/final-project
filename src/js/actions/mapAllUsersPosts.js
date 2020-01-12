@@ -31,7 +31,7 @@ function mapAllUsersPosts(users) {
         xhr.onreadystatechange = function(currentUser) {
             if (this.readyState === 4 && this.status === 200) {
                 document.querySelector('#app').innerHTML = this.responseText + template;
-                createClientEvents(currentUser);
+                createClientEvents();
             }
         };
         xhr.open('GET', url, true);

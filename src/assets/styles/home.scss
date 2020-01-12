@@ -1,7 +1,7 @@
 .home {
     &-video {
         width: 100vw;
-        height: 100vh;
+        max-height: 80vh;
         overflow: hidden;
         display: flex;
         flex-direction: column;

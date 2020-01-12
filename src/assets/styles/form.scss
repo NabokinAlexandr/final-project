@@ -14,6 +14,7 @@
         width: 400px;
         top: calc(50% - 20px);
         left: calc(50% - 200px);
+        z-index: 10;
     }
     &-anchor {
         display: block;

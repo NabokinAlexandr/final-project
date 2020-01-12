@@ -7,6 +7,7 @@ class Router {
         const r = this.routes;
         (function(scope, r) {
             window.addEventListener('hashchange', () => scope.hasChanged(scope, r));
+            window.addEventListener('load', () => scope.hasChanged(scope, r));
             for (let i = 0; i < r.length; i++) {
                 const route = r[i];
                 if (route.default) {
