@@ -1,0 +1,126 @@
+.post {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 30px 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    &_user-page {
+        height: 400px;
+        border: 2px solid $light-grey;
+        border-radius: 4px;
+        margin: 10px;
+    }
+
+    &-img {
+        width: auto;
+        height: 100%;
+    }
+    &-cover {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        padding: 15px;
+        background-color: rgba(17, 17, 18, .3);
+    }
+    &-userpic {
+        border: 1px solid $white;
+        border-radius: 50%;
+        display: block;
+        width: 60px;
+        height: 60px;
+    }
+    &-userpic_default {
+        &::after {
+            content: '';
+            border: 1px solid $white;
+            border-radius: 50%;
+            display: block;
+            width: 60px;
+            height: 60px;
+            background-color: $default;
+        }
+    }
+    &-heading {
+        color: $white;
+        padding-top: 6px;
+        padding-left: 6px;
+    }
+    &-author {
+        color: $white;
+        font-size: 24px;
+        padding-top: 16px;
+        font-family: $fontMedium;
+        padding-left: 6px;
+    }
+    &-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30%;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        background-color: $white;
+        cursor: default;
+    }
+    &-name {
+        font-size: 24px;
+        font-family: $fontLight;
+        width: 100%;
+    }
+    .likes-count {
+        color: $white;
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        &_black {
+            color: $black;
+        }
+    }
+    &-likes {
+        position: absolute;
+        bottom: 15px;
+        right: 40px;
+    }
+    &-delete-btn {
+        position: relative;
+        top: 16px;
+        background-image: url(./img/remove-btn.svg);
+        background-size: contain;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+    .like-default {
+        background-image: url(./img/like.svg);
+        background-size: contain;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+    .like-empty {
+        background-image: url(./img/like_empty.svg);
+        background-size: contain;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+    .like-active {
+        background-image: url(./img/like-active.svg);
+        background-size: contain;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+}

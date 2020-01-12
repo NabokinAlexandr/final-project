@@ -13,10 +13,8 @@ import {Apis} from '../api/api.js';
             })
         .then(
             () => {
-                document.querySelector('#js-reg-form').classList.add('hidden');
-                document.querySelector('#js-login-form').classList.add('hidden');
-                document.querySelector('#js-logout').classList.remove('hidden');
-                document.querySelector('.js-user-link').classList.remove('hidden');
+                document.querySelector('#js-reg').classList.add('hidden');
+                document.querySelector('.js-first-screen').classList.add('hidden');
             })
         .catch(err => console.error(new Error(err)));
     }

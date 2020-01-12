@@ -1,61 +1,35 @@
 .modal {
-    display: none;
     position: fixed;
-    z-index: 30;
+    z-index: 20;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, .8);
-}
+    overflow: hidden;
+    &_overflow {
+        overflow-y: auto;
+    }
 
-.modal-content {
-    position: relative;
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #fff;
-    width: 50%;
-}
-
-.modal-form {
-    display: flex;
-    flex-direction: column;
-    margin: 40px 0;
-}
-
-.modal-form input {
-    margin: 20px 0;
-    height: 40px;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid gray;
-}
-
-.modal-form textarea {
-    margin: 20px 0;
-    height: 120px;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid gray;
-}
-
-input.modal-submit {
-    width: auto;
-    margin: 0 auto;
-    background: orange;
-    color: #fff;
-    border: none;
-    font-size: 16px;
-    padding: 0 20px;
-    border-radius: 50px;
-    text-transform: uppercase;
-}
-
-.close {
-    position: absolute;
-    right: 20px;
-    font-size: 16px;
-    font-weight: bold;
+    &-content {
+        position: relative;
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #fff;
+        max-width: 450px;
+    }
+    &-close {
+        position: absolute;
+        right: 20px;
+        font-size: 26px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    &-heading {
+        font-size: 30px;
+        padding-top: 12px;
+        text-align: center;
+    }
 }

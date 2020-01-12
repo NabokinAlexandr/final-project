@@ -1,0 +1,96 @@
+.form {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 40px auto;
+
+    &_small {
+        width: 60%;
+    }
+    &-search {
+        height: 40px;
+        position: absolute;
+        width: 400px;
+        top: calc(50% - 20px);
+        left: calc(50% - 200px);
+    }
+    &-anchor {
+        display: block;
+        text-decoration: none;
+        padding-bottom: 4px;
+        border-bottom: 1px solid;
+        margin-bottom: 10px;
+        width: fit-content;
+    }
+    .search-label {
+        display: block;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-image: url("./img/search-icon.png");
+        background-size: contain;
+        top: 30px;
+        right: 2%;
+    }
+    &-button {
+        border: 2px solid $white;
+        color: $white;
+        border-radius: 25px;
+        background: $black;
+        width: 180px;
+        padding: 10px 0;
+        font-size: 16px;
+        margin: 20px auto;
+        font-family: $fontMedium;
+        cursor: pointer;
+        &:hover {
+            box-shadow: inset 1px 1px 16px -12px rgba(0,0,0,0.75);
+        }
+    }
+    &-input {
+        margin: 20px 0;
+        height: 40px;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid grey;
+        border-radius: 4px;
+    }
+    &-textarea {
+        margin: 20px 0;
+        height: 120px;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid grey;
+        border-radius: 4px;
+    }
+    &-message {
+        p {
+            color: #408f2c;
+            padding-top: 10px;
+        }
+
+        .error {
+            color: #a31a1a;
+        }
+    }
+    &-label_photo {
+        cursor: pointer;
+        display: block;
+        margin-bottom: 18px;
+        &::before {
+            content:'';
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            background-image: url(./img/add-photo-icon.png);
+            background-size: contain;
+            position: relative;
+            top: 14px;
+            cursor: pointer;
+        }
+    }
+    &_nomargin {
+        margin-bottom: 0;
+    }
+}

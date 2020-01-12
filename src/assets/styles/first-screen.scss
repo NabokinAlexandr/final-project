@@ -1,0 +1,28 @@
+.first-screen {
+
+    &-buttons {
+        position: absolute;
+        z-index: 10;
+        bottom: 17%;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    &-button {
+        border: 2px solid $white;
+        color: $white;
+        border-radius: 25px;
+        background: transparent;
+        width: 180px;
+        padding: 10px 0;
+        font-size: 24px;
+        margin: 20px;
+        font-family: $fontMedium;
+        cursor: pointer;
+
+        &_white {
+            color: $default;
+            background: $white;
+        }
+    }
+}

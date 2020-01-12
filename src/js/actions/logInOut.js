@@ -1,5 +1,4 @@
 import {Apis} from '../api/api.js';
-import {mapUserData} from './mapUserData.js';
 (function() {
     function passAuthentification(name, pass) {
         const api = new Apis(),
@@ -14,12 +13,12 @@ import {mapUserData} from './mapUserData.js';
                 const currentUser = resp.data.filter(user => user.name === name && user.pass === pass);
                 if (currentUser.length > 0) {
                     api.setCurrentUser(currentUser[0]);
-                    document.querySelector('#js-reg-form').classList.add('hidden');
-                    document.querySelector('#js-login-form').classList.add('hidden');
-                    document.querySelector('#js-logout').classList.remove('hidden');
-                    document.querySelector('.js-user-link').classList.remove('hidden');
+                    document.querySelector('.js-first-screen').classList.add('hidden');
+                    document.querySelector('#modal-login').classList.add('hidden');
+
                 } else {
                     p.innerHTML = 'User credentials are invalid. Please, check your password and name';
+                    p.classList.add('error');
                     messageBlock.appendChild(p);
                 }
             }
@@ -33,10 +32,7 @@ import {mapUserData} from './mapUserData.js';
             resp => {
                 const currentUser = resp.data[0];
                 api.removeCurrentUser(currentUser.id);
-                document.querySelector('#js-reg-form').classList.remove('hidden');
-                document.querySelector('#js-login-form').classList.remove('hidden');
-                document.querySelector('#js-logout').classList.add('hidden');
-                document.querySelector('.js-user-link').classList.add('hidden');
+                document.querySelector('.js-first-screen').classList.remove('hidden');
             }
         )
         .then (() => location.replace('http://localhost:3000'))

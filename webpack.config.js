@@ -55,7 +55,7 @@ const config = {
             },
             {
                 // для переноса картинок в дист/билд и сжатия по лимиту
-                test: /\.(jpg|png|mp4)$/,
+                test: /\.(jpg|png|mp4|mov)$/,
                 loader: 'url-loader',
                 options: {
                     limit: 5000,

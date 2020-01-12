@@ -1,13 +1,28 @@
 @import "./styles/reset.scss";
 @import "./styles/variables.scss";
 @import "./styles/header.scss";
+@import "./styles/footer.scss";
 @import "./styles/modal.scss";
+@import "./styles/form.scss";
+@import "./styles/home.scss";
+@import "./styles/slider.scss";
+@import "./styles/first-screen.scss";
+@import "./styles/user-page.scss";
+@import "./styles/post.scss";
 * {
     font-family: $fontNormal;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     color: $default;
+}
+#app {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    width: 90%;
+    max-width: 1240px;
 }
 .hidden {
     display: none;

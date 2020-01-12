@@ -8,6 +8,9 @@ $mobile: 'all and (min-width: #{$mobile-width})';
 $black: #000;
 $white: #fff;
 $default: #1f1e1e;
+$grey: #737475;
+$light-grey: #dbdbdb;
+$blue: #2554a1;
 
 @font-face {
 	font-family: "Helvetica Neue Regular";
@@ -28,5 +31,3 @@ $default: #1f1e1e;
 $fontNormal: 'Helvetica Neue Regular', Arial, Helvetica, sans-serif;
 $fontMedium: 'Helvetica Neue Medium', Arial, Helvetica, sans-serif;
 $fontLight: 'Helvetica Neue Light', Arial, Helvetica, sans-serif;
-
-$imgPath: "./img/";

@@ -7,48 +7,14 @@
         <meta charset="utf-8"/>
     </head>
     <body>
-        <header>
-            <ul class="navi">
-                <li><a href="/#home" class="logo">home</a></li>
-                <li class="js-user-link hidden toUserpage"><a href="/#user-page">user-page</a></li>
+        <header class="header">
+            <ul class="header-navi">
+                <li><a href="/#home" class="logo"></a></li>
+                <li><a href="/#user_" class="js-user-link toUserpage"></a></li>
             </ul>
-            <input type="text" id="search">
-            <ul class="regLog">
-                <li>Login</li>
-                <li>Register</li>
-            </ul>
+            <span id="js-logout" class="header-logout">Log out</span>
         </header>
-
-        <div id="myModalReg" class="modal">
-            <div class="modal-content">
-                <span class="close">X</span>
-                <form class='form' id="js-reg-form">
-                    <input type="text" class="form-input" placeholder="Your name" id="js-reg-name">
-                    <input type="password" class="form-input" placeholder="Your password" id="js-reg-pass">
-                    <input type="password" class="form-input" placeholder="Confirm your password" id="js-reg-confirm-pass">
-                    <button type="submit" class="form-button">Register</button>
-                    <div class="form-message js-reg-form-message"></div>
-                </form>
-            </div>
-        </div>
-
-        <div id="myModalLogin" class="modal">
-            <div class="modal-content">
-                <span class="close">X</span>
-                <form class='form' id="js-login-form">
-                    <input type="text" class="form-input" placeholder="Your name" id="js-login-name">
-                    <input type="password" class="form-input" placeholder="Your password" id="js-login-pass">
-                    <button type="submit" class="form-button">Log in</button>
-                    <div class="form-message js-login-form-message"></div>
-                </form>
-            </div>
-        </div>
-
-
-        <button type="button" id="js-logout" class="form-button hidden">Log out</button>
-
-        <div id="app"></div>
-
+        <main id="app"></main>
         <footer>
             <nav class="navigation js-menu">
                 <ul class="navigation-aboutUs">
@@ -62,6 +28,82 @@
                 </ul>
                 <li class="navigation-contacts"><a href="/#contacts">contacts</a></li>
             </nav>
-        </footer> 
+        </footer>
+        <!-- Modals -->
+        <div class="modal first-screen js-first-screen">
+            <div class="first-screen-slider slider">
+                <input type="radio" name="slider" id="slide1" checked>
+                <input type="radio" name="slider" id="slide2">
+                <input type="radio" name="slider" id="slide3">
+                <div class="slides">
+                   <div class="slides-overflow">
+                      <div class="slides-inner">
+                         <div class="slide slide_1">
+                            <div class="slide-content">
+                               Discover and share incredible photos
+                            </div>
+                         </div>
+                         <div class="slide slide_2">
+                            <div class="slide-content">
+                               Follow and interact with photographers
+                            </div>
+                         </div>
+                         <div class="slide slide_3">
+                            <div class="slide-content">
+                               Get feedback on your photos
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="controls">
+                   <label for="slide1"></label>
+                   <label for="slide2"></label>
+                   <label for="slide3"></label>
+                </div>
+                <div class="bullets">
+                   <label for="slide1"></label>
+                   <label for="slide2"></label>
+                   <label for="slide3"></label>
+                </div>
+            </div>
+            <div class = "first-screen-buttons">
+                <button type="button" id="js-login" class="first-screen-button">Log in</button>
+                <button type="button" id="js-reg" class="first-screen-button first-screen-button_white">Registration</button>
+            </div>
+        </div>
+        <div id="modal-reg" class="modal hidden">
+            <div class="modal-content">
+                <span class="js-reg-close modal-close">&times;</span>
+                <form class='form' id="js-reg-form">
+                    <input type="text" class="form-input" placeholder="Your name" id="js-reg-name">
+                    <input type="password" class="form-input" placeholder="Your password" id="js-reg-pass">
+                    <input type="password" class="form-input" placeholder="Confirm your password" id="js-reg-confirm-pass">
+                    <button type="submit" class="form-button">Register</button>
+                    <div class="form-message js-reg-form-message"></div>
+                </form>
+            </div>
+        </div>
+        <div id="modal-login" class="modal hidden">
+            <div class="modal-content">
+                <span class="js-login-close modal-close">&times;</span>
+                <form class='form' id="js-login-form">
+                    <input type="text" class="form-input" placeholder="Your name" id="js-login-name">
+                    <input type="password" class="form-input" placeholder="Your password" id="js-login-pass">
+                    <button type="submit" class="form-button">Log in</button>
+                    <div class="form-message js-login-form-message"></div>
+                </form>
+            </div>
+        </div>
+        <div id="modal-post" class="modal hidden">
+            <span class="js-post-close modal-close">&times;</span>
+            <div class="modal-content modal-post">
+            </div>
+        </div>
+        <div id="modal-home-post" class="modal hidden">
+            <span class="js-home-post-close modal-close">&times;</span>
+            <div class="modal-content modal-post">
+            </div>
+        </div>
     </body>
 </html>

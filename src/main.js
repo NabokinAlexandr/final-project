@@ -7,33 +7,27 @@ import {Apis} from './js/api/api.js';
 import {mapUserData} from './js/actions/mapUserData.js';
 import {mapAllUsersPosts} from './js/actions/mapAllUsersPosts.js';
 import './js/actions/hashChange.js';
+import {closeModal, openModal} from './js/actions/commonActions.js';
 (function() {
     window.onload = function() {
         const api = new Apis();
         api.getCurrentUser()
         .then(resp => {
             if (resp.data.length > 0) {
-                document.querySelector('#js-reg-form').classList.add('hidden');
-                document.querySelector('#js-login-form').classList.add('hidden');
-                document.querySelector('#js-logout').classList.remove('hidden');
-                document.querySelector('.js-user-link').classList.remove('hidden');
-                if (window.location.hash.substr(1).replace('/#', '') === 'user-page') {
+                closeModal(document.querySelector('.js-first-screen'));
+                document.querySelector('.js-post-close').addEventListener('click', function() {
+                    closeModal(document.querySelector('#modal-post'));
+                    location.replace(`http://localhost:3000/#user_${resp.data[0].id}`);
+                });
+                if (window.location.hash.substr(1).replace('/#', '').includes('user_')) {
+                    location.replace(`http://localhost:3000/#user_${resp.data[0].id}`);
                     mapUserData(resp.data[0]);
                 }
                 if (window.location.hash.substr(1).replace('/#', '') === 'js-modal') {
-                    location.replace('http://localhost:3000/#user-page');
+                    location.replace(`http://localhost:3000/#user-${resp.data[0].id}`);
                 }
             } else {
-                document.querySelector('#js-reg-form').classList.remove('hidden');
-                document.querySelector('#js-login-form').classList.remove('hidden');
-                document.querySelector('#js-logout').classList.add('hidden');
-                document.querySelector('.js-user-link').classList.add('hidden');
-                if (window.location.hash.substr(1).replace('/#', '') === 'user-page') {
-                    mapUserData();
-                }
-                if (window.location.hash.substr(1).replace('/#', '') === 'js-modal') {
-                    location.replace('http://localhost:3000/#user-page');
-                }
+                openModal(document.querySelector('.js-first-screen'));
             }
         })
         .catch(err => console.error(new Error(err)));
