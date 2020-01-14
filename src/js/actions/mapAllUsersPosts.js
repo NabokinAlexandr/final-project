@@ -24,7 +24,7 @@ function createHomePageTemplate(users, currentUser) {
                     <button class='sort-btn js-sort'>Sort by date</button>
                     <div>
                         <select class="js-filter">
-                            <option value='' selected>Choose author</option>
+                            <option value='' selected disabled>Choose author</option>
                             <option value='all'>All photographers</option>
                             ${allDbUsers.map(user => `<option value=${user.id}>${user.name}</option>`)};
                         </select>
