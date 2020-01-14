@@ -11,8 +11,9 @@ function userPageTemplate(user) {
             </div>
             <article class='user-info'>
                 <div>
-                    <div class=${user.userPic.trim().length === '' ? 'user-pic hidden' : 'user-pic'}>
-                        <img src= ${user.userPic} height='100%'>
+                    <div class='user-pic'
+                        style="background: ${user.userPic.trim() !== '' ? `url(${user.userPic})` : 'rgba(70, 72, 74, .3)'}; background-size: cover;"
+                    >
                     </div>
                     <h2 class='user-name'> ${user.name} </h2>
                     <p class='user-data'> ${user.data} </p>
