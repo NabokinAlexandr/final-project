@@ -1,0 +1,70 @@
+@mixin contacts-icon {
+    content: '';
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 10px; 
+}
+
+.contact_us {
+    width: 100vw;
+    margin-top: 66px;
+    font-family: $fontMedium;
+    a {
+        text-decoration: none;
+        color: $blue;
+    }
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin: 20px auto 20px auto;
+    &_block-1 {
+        margin-top: 35px;
+        width: 105vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .mailTel {
+        &-mail {
+            margin-bottom: 10px;
+            &::before {
+                @include contacts-icon;
+                background-image: url(./img/mail.svg);
+           } 
+        }
+        &-tel {
+            &::before {
+                @include contacts-icon;
+                background-image: url(./img/phone.svg);
+            }
+        }
+    }
+    .callAdr {
+        &-call {
+            &::before {
+                @include contacts-icon;
+                background-image: url(./img/skype.svg);
+            } 
+         }
+         &-adr {
+            margin-bottom: 10px;
+            &::before {
+                @include contacts-icon;
+                background-image: url(./img/adress.svg);
+            }
+         }
+    }
+    &_block-2 {
+        width: 100vw;
+        iframe {
+            width: 100vw;
+            height: 62vh;
+        }
+    }
+}
