@@ -88,11 +88,6 @@
             color: $black;
         }
     }
-    &-likes {
-        position: absolute;
-        bottom: 15px;
-        right: 40px;
-    }
     &-delete-btn {
         position: relative;
         top: 16px;
@@ -103,22 +98,34 @@
         cursor: pointer;
     }
     .like-default {
+        position: absolute;
+        bottom: 15px;
+        right: 40px;
         background-image: url(./img/like.svg);
         background-size: contain;
+        background-repeat: no-repeat;
         width: 30px;
         height: 30px;
         cursor: pointer;
     }
     .like-empty {
+        position: absolute;
+        bottom: 15px;
+        right: 40px;
         background-image: url(./img/like_empty.svg);
         background-size: contain;
+        background-repeat: no-repeat;
         width: 30px;
         height: 30px;
         cursor: pointer;
     }
     .like-active {
+        position: absolute;
+        bottom: 15px;
+        right: 40px;
         background-image: url(./img/like-active.svg);
         background-size: contain;
+        background-repeat: no-repeat;
         width: 30px;
         height: 30px;
         cursor: pointer;

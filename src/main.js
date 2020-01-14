@@ -10,6 +10,18 @@ import './js/actions/hashChange.js';
 import {closeModal, openModal} from './js/actions/commonActions.js';
 (function() {
     window.onload = function() {
+        document.querySelector('#js-reg').addEventListener('click', function() {
+            openModal(document.querySelector('#modal-reg'));
+        });
+        document.querySelector('.js-reg-close').addEventListener('click', function() {
+            closeModal(document.querySelector('#modal-reg'));
+        });
+        document.querySelector('#js-login').addEventListener('click', function() {
+            openModal(document.querySelector('#modal-login'));
+        });
+        document.querySelector('.js-login-close').addEventListener('click', function() {
+            closeModal(document.querySelector('#modal-login'));
+        });
         const api = new Apis();
         api.getCurrentUser()
         .then(resp => {

@@ -4,6 +4,7 @@ import {editUser} from './editUser.js';
 import {mapUserData} from './mapUserData.js';
 import {Apis} from '../api/api.js';
 import {closeModal, openModal, openPhoto} from './commonActions.js';
+import {toggleLike} from './postToggleLike.js';
 function createPost(user) {
     const heading = document.querySelector('.js-post-heading').value,
     tags = document.querySelector('.js-post-tags').value.split('#').filter(tag => tag.trim() !== ''),
@@ -167,8 +168,9 @@ function createEvents(user) {
             removePost(event.target, user);
             mapUserData(user);
         }
-        if (event.target.classList.contains('js-like')) {
-            return;
+        if (event.target.classList.contains('like-empty')
+        || event.target.classList.contains('like-active')) {
+            toggleLike(event.target, user);
         }
         if (event.target.classList.contains('post-img')) {
             const popup = document.querySelector('#modal-post'),

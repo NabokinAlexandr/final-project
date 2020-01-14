@@ -7,9 +7,7 @@ function homePageTemplate(posts, currentUser) {
                 <span class='post-author'>${post.author}</span>
                 <span class='post-heading'>${post.heading}</span>
                 <span class='likes-count'>${post.likes.length}</span>
-                <div class='post-likes js-like'>
-                    <div class=${post.likes.filter(like => like === currentUser.id).length > 0 ? 'like-active' : 'like-default'}></div>
-                </div>
+                <div class=${post.likes.filter(like => like === currentUser.id).length > 0 ? 'like-active' : 'like-default'}></div>
             </div>
             <img class='post-img' src=${post.pic}>
         </article>`;

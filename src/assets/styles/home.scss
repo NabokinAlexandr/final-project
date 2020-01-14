@@ -1,7 +1,9 @@
 .home {
     &-video {
         width: 100vw;
-        height: 100vh;
+        height: fit-content;
+        max-height: 80vh;
+        position: relative;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -9,11 +11,54 @@
     }
     &-posts {
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;        
         align-items: center;
         color: transparent;
         margin: 0 auto;
         padding: 30px;
+    }
+    &-posts.reverse {
+        flex-wrap: wrap-reverse;
+        flex-direction: row-reverse;
+    }
+    &-sort {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-around;
+        margin: 40px 0 0;
+        .sort-btn {
+            font-size: 20px;
+            width: fit-content;
+            background: transparent;
+            border: none;
+            margin: 0 20px;
+            padding-bottom: 4px;
+            cursor: pointer;
+            &::after {
+                content: '↑';
+                display: inline-block;
+                padding: 0 10px;
+                font-size: 30px;
+                transition: all .3s linear;
+            }
+            &:hover {
+                border-bottom: 1px solid;
+            }
+        }
+        .sort-btn.rotate {
+            &::after {
+                content: '↑';
+                display: inline-block;
+                padding: 0 10px;
+                font-size: 30px;
+                position: relative;
+                top: 9px;
+                transform: rotate(180deg);
+                transition: all .3s linear;
+            }
+        }
     }
 
 }

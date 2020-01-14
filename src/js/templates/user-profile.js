@@ -3,9 +3,9 @@ function userProfile(user) {
         <div id='modal-profile' class='modal modal_overflow hidden'>
             <div class='modal-content'>
                 <span class='modal-close js-profile-close'>&times;</span>
-                <div class=${user.userPic.trim().length === '' ? 'hidden' : 'user-pic-small'}>
-                    <img src= ${user.userPic} class='js-u-pic' height='100%'>
-                </div>
+                <div class='user-pic-small'
+                    style="background: ${user.userPic.trim() !== '' ? `url(${user.userPic})` : 'rgba(70, 72, 74, .3)'}; background-size: cover;"
+                ></div>
                 <h2 class='modal-heading'>${user.name}</h2>
                 <form class='form form_nomargin js-change-user-pic'>
                     <label class='form-label form-label_photo' for='js-add-userpic'> Add or update your photo </label>

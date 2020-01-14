@@ -1,4 +1,5 @@
 import {Apis} from '../api/api.js';
+import {mapAllUsersPosts} from './mapAllUsersPosts.js';
 (function() {
     function passAuthentification(name, pass) {
         const api = new Apis(),
@@ -15,7 +16,7 @@ import {Apis} from '../api/api.js';
                     api.setCurrentUser(currentUser[0]);
                     document.querySelector('.js-first-screen').classList.add('hidden');
                     document.querySelector('#modal-login').classList.add('hidden');
-
+                    mapAllUsersPosts(resp.data, currentUser);
                 } else {
                     p.innerHTML = 'User credentials are invalid. Please, check your password and name';
                     p.classList.add('error');

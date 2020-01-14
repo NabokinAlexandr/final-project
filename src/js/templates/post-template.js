@@ -6,9 +6,7 @@ function postTemplate(user) {
             <div class='post-info'>
                 <h2 class='post-name'>${post.heading}</h2>
                 <span class='likes-count likes-count_black'>${post.likes.length}</span>
-                <div class='post-likes js-like'>
-                    <div class=${post.likes.filter(like => like === user.id).length > 0 ? 'like-active' : 'like-empty'}></div>
-                </div>
+                <div class=${post.likes.filter(like => like === user.id).length > 0 ? 'like-active' : 'like-empty'}></div>
                 <div class='post-delete-btn js-remove-post'></div>
                 <ul class='post-tags hidden'>
                     ${post.tags.map(tag => {
