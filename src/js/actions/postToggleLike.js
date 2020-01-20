@@ -8,7 +8,21 @@ function editTargetUser(user) {
     api.editUser(user)
     .catch(err => console.err(new Error(err)));
 }
-function toggleLike(target, currentUser, searchQuery) {
+function postUpdate(post) {
+    const likeActive = post.getElementsByClassName('like-active')[0],
+    likeDefault = post.getElementsByClassName('like-default')[0],
+    count = post.getElementsByClassName('likes-count')[0];
+    if (likeActive) {
+        likeActive.className = 'like-default';
+        count.innerHTML = `${Number(count.innerHTML) - 1}`;
+    }
+    if (likeDefault) {
+        likeDefault.className = 'like-active';
+        count.innerHTML = `${Number(count.innerHTML) + 1}`;
+    }
+    
+}
+function toggleLike(target, currentUser) {
     const likeID = currentUser.id,
     post = target.parentElement.parentElement,
     api = new Apis();
@@ -31,13 +45,7 @@ function toggleLike(target, currentUser, searchQuery) {
                 } else {
                     editTargetUser(user);
                 }
-                if (window.location.hash.substr(1).replace('/#', '').includes('user_')) {
-                    mapUserData(user);
-                } else if (window.location.hash.substr(1).replace('/#', '').includes('home')){
-                    mapAllUsersPosts(users);
-                } else {
-                    search(searchQuery);
-                }
+                postUpdate(post, currentUser);
                 return;
             }
         });

@@ -1,0 +1,115 @@
+@media all and (max-width: $desktop-width) {
+    main {
+        .home {
+            &-posts,
+            .user-posts-list {
+                width: 728px;
+            }
+        }
+        .post,
+        .post:nth-child(3n) {
+            margin: 30px 18px 30px 0;
+        }
+        .post:nth-child(2n) {
+            margin: 30px 0;
+        }
+    }
+}
+@media all and (max-width: $retina-width) {
+    * {
+        font-size: 16px;
+    }
+    .header {
+        height: 60px;
+        background: $white;
+        z-index: 20;
+        box-shadow: 0px 3px 5px -1px #9e959e;
+        .logo {
+            height: 47px;
+            width: 70px;
+        }
+        .to-userpage {
+            height: 34px;
+            width: 34px;
+        }
+        &-logout {
+            font-size: 16px;
+        }
+    }
+    #app {
+        padding: 60px 0 40px 0;
+    }
+    .contact_us {
+        margin: 0;
+    }
+    .contacts {
+        margin: 0;
+    }
+    main {
+        .post,
+        .post:nth-child(3n)  {
+            margin: 20px 0 0 0;
+        }
+        .home {
+            &-posts,
+            .user-posts-list {
+                flex-direction: column;
+                justify-content: center;
+                width: 350px;
+                padding: 20px 0 40px 0;
+            }
+            &-posts.reverse {
+                flex-wrap: wrap-reverse;
+                flex-direction: column-reverse;
+            }
+            &-sort {
+                flex-direction: column;
+                margin: 20px 0 0;
+                .sort-btn {
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                }
+                select {
+                    font-size: 16px;
+                }
+            }
+        }
+        .form {
+            &-search {
+                width: 300px;
+                left: calc(50% - 150px);
+                top: calc(35% - 20px);
+            }
+        }
+    }
+    #modal-post {
+        .post-img {
+            width: 90%;
+            height: auto;
+        }
+        .post-name, .post-heading {
+            font-size: 30px;
+        }
+    }
+}
+@media all and (max-width: $mobile-width) {
+    .post {
+        height: 250px;
+        width: 250px;
+        &_user-page {
+            height: 300px;
+        }
+    }
+    .home-posts,
+    .user-posts-list {
+        width: 250px;
+    }
+    .contacts_block-1 {
+        flex-direction: column;
+        margin: 0;
+        padding: 20px;
+        .mailTel {
+            padding-bottom: 10px;
+        }
+    }
+}

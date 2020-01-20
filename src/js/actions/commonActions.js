@@ -1,8 +1,10 @@
 function openModal(modal) {
     modal.classList.remove('hidden');
+    document.querySelector('body').classList.add('fixed');
 }
 function closeModal(modal) {
     modal.classList.add('hidden');
+    document.querySelector('body').classList.remove('fixed');
 }
 function openPhoto(target, popup, modal) {
     const post = target.parentElement,
@@ -11,8 +13,6 @@ function openPhoto(target, popup, modal) {
         modal.removeChild(modal.firstChild);
     }
     modal.appendChild(clone);
-    
-    location.replace(`http://localhost:3000/#${post.id}`);
     openModal(popup);
 }
 export {openModal, closeModal, openPhoto};

@@ -1,3 +1,4 @@
+import {removeActiveRoute} from '../actions/menu.js';
 class Router {
     constructor(routes) {
         this.routes = routes;
@@ -11,7 +12,7 @@ class Router {
             for (let i = 0; i < r.length; i++) {
                 const route = r[i];
                 if (route.default) {
-                    scope.goToRoute(route.htmlName);
+                    scope.goToRoute(route.htmlName, route.name);
                 }
             }
         }(this, r));
@@ -21,25 +22,28 @@ class Router {
             for (let i = 0; i < r.length; i++) {
                 const route = r[i];
                 if (route.isActiveRoute(window.location.hash.substr(1))) {
-                    scope.goToRoute(route.htmlName);
+                    scope.goToRoute(route.htmlName, route.name);
                 }
             }
         } else {
             for (let i = 0; i < r.length; i++) {
                 const route = r[i];
                 if (route.default) {
-                    scope.goToRoute(route.htmlName);
+                    scope.goToRoute(route.htmlName, route.name);
                 }
             }
         }
     }
-    goToRoute(htmlName) {
+    goToRoute(htmlName, name) {
         (function(scope) {
             const url = `./pages/${htmlName}`,
             xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
                     scope.rootElem.innerHTML = this.responseText;
+                    const link = document.querySelector(`a[href='/#${name}']`);
+                    removeActiveRoute(link);
+                    link.parentElement.classList.add('active');
                 }
             };
             xhr.open('GET', url, true);

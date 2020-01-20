@@ -30,9 +30,11 @@ function createHomePageTemplate(users, currentUser) {
                         </select>
                     </div>
                 </div>
-                <section class='home-posts js-all-posts'>
-                    ${homePageTemplate(postsToMap, currentUser)}
-                </section>
+                <div class='posts'>
+                    <section class='home-posts js-all-posts'>
+                        ${homePageTemplate(postsToMap, currentUser)}
+                    </section>
+                </div>
             `);
         })
         .catch(err => reject(new Error(err)));

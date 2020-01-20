@@ -2,11 +2,11 @@ function postTemplate(user) {
     return `${user.posts.map(post => {
         return `
         <article class='user-post post post_user-page' id=${post.id}>
-            <img class='post-img' src=${post.pic}>
+            <img class='post-img' src=${post.pic} alt=${post.heading}>
             <div class='post-info'>
                 <h2 class='post-name'>${post.heading}</h2>
                 <span class='likes-count likes-count_black'>${post.likes.length}</span>
-                <div class=${post.likes.filter(like => like === user.id).length > 0 ? 'like-active' : 'like-empty'}></div>
+                <div class=${post.likes.filter(like => like === user.id).length > 0 ? 'like-active' : 'like-default'}></div>
                 <div class='post-delete-btn js-remove-post'></div>
                 <ul class='post-tags hidden'>
                     ${post.tags.map(tag => {

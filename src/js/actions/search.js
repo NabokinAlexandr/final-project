@@ -1,29 +1,16 @@
 import {Apis} from '../api/api.js';
 import {homePageTemplate} from '../templates/home-page-template.js';
-import {createSearchPageEvents} from './client-actions.js';
-function mapSearchPage(posts, hashLocation) {
+function mapSearhResult(posts, hashLocation) {
     const api = new Apis();
     api.getCurrentUser()
     .then(resp => {
         const currentUser = resp.data[0];
-        const template = `
-            <div class='search-cover'>
-                <h2 class='search-tags'>${hashLocation}</h2>
-                <form class="form form-search form_small">
-                    <input type="text" id="search" class="form-input">
-                    <label for="#search" class="search-label"></label>
-                </form>
-                <div class='search-blur'></div>
-            </div>
-            <section class='search-posts js-search-posts'>
-                ${homePageTemplate(posts, currentUser)}
-            </section>
-        `;
-        if (!window.location.hash.substr(1).replace('/#', '').includes(`${hashLocation}`)) {
-            location.replace(`http://localhost:3000/${hashLocation}`);
+        if (posts.length > 0) {
+            document.querySelector('.js-all-posts').innerHTML = homePageTemplate(posts, currentUser);
+        } else {
+            document.querySelector('.js-all-posts').innerHTML = '<h2 class="home-no-results">Results not found</h2>';
         }
-        document.querySelector('#app').innerHTML = template;
-        createSearchPageEvents(hashLocation);
+        location.replace(`http://localhost:3000/#query=${hashLocation}`);
     })
     .catch(err => console.error(new Error(err)));
     
@@ -48,8 +35,8 @@ function search(queries) {
             });
         });
         const hashLocation = queries;
-        mapSearchPage(result, hashLocation);
+        mapSearhResult(result, hashLocation);
     })
     .catch(err => console.error(new Error(err)));
 }
-export {search, mapSearchPage};
+export {search};

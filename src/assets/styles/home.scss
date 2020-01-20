@@ -16,11 +16,18 @@
         align-items: center;
         color: transparent;
         margin: 0 auto;
-        padding: 30px;
+        width: 1100px;
     }
     &-posts.reverse {
         flex-wrap: wrap-reverse;
         flex-direction: row-reverse;
+    }
+    &-no-results {
+        padding: 40px 0 50px 0;
+        font-family: $fontMedium;
+        font-size: 40px;
+        width: 100%;
+        text-align: center;
     }
     &-sort {
         display: flex;
@@ -60,5 +67,10 @@
             }
         }
     }
-
+}
+.posts {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }

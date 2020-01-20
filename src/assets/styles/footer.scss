@@ -16,18 +16,17 @@ footer {
     box-shadow: 0px -4px 5px -1px #9e959e;
 
     .navigation {
-        display: flex;
-        justify-content: space-around;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        height: inherit;
         width: 100%;
+        .nav-active,
+        .active a {
+            color: $blue;
+            font-family: $fontMedium;
+        }
         &-aboutUs {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            flex-direction: column;
+            flex-direction: row;
         }
         &-contacts {
             &::after {

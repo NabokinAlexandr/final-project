@@ -82,5 +82,16 @@
         justify-content: flex-start;
         align-items: center;
         padding: 50px;
+        .post .like-default {
+            position: absolute;
+            bottom: 15px;
+            right: 40px;
+            background-image: url(./img/like_empty.svg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
     }
 }
