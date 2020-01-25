@@ -22,21 +22,17 @@ import {closeModal, openModal} from './js/actions/commonActions.js';
         document.querySelector('.js-login-close').addEventListener('click', function() {
             closeModal(document.querySelector('#modal-login'));
         });
+        document.querySelector('.js-post-close').addEventListener('click', function() {
+            closeModal(document.querySelector('#modal-post'));
+        });
         const api = new Apis();
         api.getCurrentUser()
         .then(resp => {
             if (resp.data.length > 0) {
                 closeModal(document.querySelector('.js-first-screen'));
-                document.querySelector('.js-post-close').addEventListener('click', function() {
-                    closeModal(document.querySelector('#modal-post'));
-                    location.replace(`http://localhost:3000/#user_${resp.data[0].id}`);
-                });
                 if (window.location.hash.substr(1).replace('/#', '').includes('user_')) {
                     location.replace(`http://localhost:3000/#user_${resp.data[0].id}`);
                     mapUserData(resp.data[0]);
-                }
-                if (window.location.hash.substr(1).replace('/#', '') === 'js-modal') {
-                    location.replace(`http://localhost:3000/#user-${resp.data[0].id}`);
                 }
             } else {
                 openModal(document.querySelector('.js-first-screen'));

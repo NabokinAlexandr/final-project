@@ -4,11 +4,14 @@
     height: 350px;
     overflow: hidden;
     border-radius: 8px;
-    margin: 30px 18px;
+    margin: 30px 18px 30px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    &:nth-child(3n) {
+        margin: 30px 0;
+    }
     &_user-page {
         height: 400px;
         border: 2px solid $light-grey;
@@ -102,17 +105,6 @@
         bottom: 15px;
         right: 40px;
         background-image: url(./img/like.svg);
-        background-size: contain;
-        background-repeat: no-repeat;
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-    }
-    .like-empty {
-        position: absolute;
-        bottom: 15px;
-        right: 40px;
-        background-image: url(./img/like_empty.svg);
         background-size: contain;
         background-repeat: no-repeat;
         width: 30px;

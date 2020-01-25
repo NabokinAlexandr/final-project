@@ -1,0 +1,60 @@
+#modal-post {
+    .modal-content {
+       background-color: transparent;
+       border: none;
+       margin: 0;
+       max-width: 100%;
+       height: 100%;
+       overflow: auto;
+       padding: 0;
+    }
+    .modal-close {
+        color: $white;
+        font-size: 40px;
+        z-index: 10;
+    }
+    .post-delete-btn,
+    .like-active,
+    .like-default,
+    .likes-count {
+        display: none;
+    }
+    .post {
+        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &-cover,
+        &-info {
+            background-color: transparent;
+            position: fixed;
+            width: fit-content;
+            height: 100%;
+            bottom: 0;
+            left: 10px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        &-name, 
+        &-heading {
+            color: $white;
+            font-size: 40px;
+        }
+        &-img {
+            width: 70%;
+            height: auto;
+        }
+        &-tags.hidden {
+            display: flex;
+            color: transparent;
+            li {
+                color: $white;
+                font-size: 20px;
+            }
+        }
+    }
+}

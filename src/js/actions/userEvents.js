@@ -168,7 +168,7 @@ function createEvents(user) {
             removePost(event.target, user);
             mapUserData(user);
         }
-        if (event.target.classList.contains('like-empty')
+        if (event.target.classList.contains('like-default')
         || event.target.classList.contains('like-active')) {
             toggleLike(event.target, user);
         }
