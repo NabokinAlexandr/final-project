@@ -19,15 +19,7 @@ class Apis {
     return api.put(`users/${user.id}`, user);
   }
   setCurrentUser(user) {
-    this.getCurrentUser()
-    .then(
-      resp => {
-        if (resp.data.length > 0) {
-          this.removeCurrentUser(resp.data[0].id);
-        }
-        return api.post('currentUser', user);
-      })
-    .catch(err => console.error(new Error(err)));
+    return api.post('currentUser', user);
   }
   getCurrentUser() {
     return api.get('currentUser');

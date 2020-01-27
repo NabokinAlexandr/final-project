@@ -1,22 +1,28 @@
 class Validator {
-    constructor(inputValue, field) {
+    constructor(inputValue, fieldName) {
         this.data = inputValue;
-        this.field = field;
+        this.fieldName = fieldName;
         this.message = '';
     }
     validate() {
         if (this.checkValue()) {
-            return this.createMessage('Thank you for registration!');
+            return {
+                text: 'Thank you for registration!',
+                status: 'passed'
+            };
         } else {
-            return this.createError(this.message);
+            return {
+                text: this.message,
+                status: 'fail'
+            };
         }
     }
     checkValue() {
         if (this.data.trim().length === 0) {
-            this.message = `${this.field} field can't be empty`;
+            this.message = `${this.fieldName} field can't be empty`;
             return false;
         } else {
-            if (this.field.toLowerCase() === 'password') {
+            if (this.fieldName.toLowerCase() === 'password') {
                 return this.passValidate();
             } else {
                 return true;
@@ -26,30 +32,16 @@ class Validator {
 
     passValidate() {
         if (this.data.trim().length < 5) {
-            this.message = `${this.field} should contain at least 5 symbols`;
+            this.message = `${this.fieldName} should contain at least 5 symbols`;
             return false;
         } else {
             if (this.data.match('^[A-Za-z0-9]+$')) {
                 return true;
             } else {
-                this.message = `${this.field} should contain only letters and numbers`;
+                this.message = `${this.fieldName} should contain only letters and numbers`;
                 return false;
             }
         }
-    }
-
-    createError(err) {
-        return {
-            text: err,
-            status: 'fail'
-        };
-    }
-
-    createMessage(message) {
-        return {
-            text: message,
-            status: 'passed'
-        };
     }
 }
 export {Validator};

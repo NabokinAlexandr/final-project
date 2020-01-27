@@ -1,4 +1,4 @@
-import {mapAllUsersPosts} from './mapAllUsersPosts.js';
+import {homePageAllPosts} from './homePageAllPosts.js';
 import {Apis} from '../api/api.js';
 function filter(query, currentUser) {
     const api = new Apis();
@@ -8,7 +8,7 @@ function filter(query, currentUser) {
             resp => {
                 if (window.location.hash.substr(1).replace('/#', '').includes('home') ||
                 window.location.hash.substr(1).replace('/', '') === '') {
-                    mapAllUsersPosts(resp.data, currentUser);
+                    homePageAllPosts(resp.data, currentUser);
                 } else {
                     location.replace('http://localhost:3000/#home');
                 }
@@ -22,7 +22,7 @@ function filter(query, currentUser) {
                 const user = resp.data;
                 location.replace(`http://localhost:3000/#photographer=${user.name}`);
                 if (user.posts.length > 0) {
-                    mapAllUsersPosts([user], currentUser);
+                    homePageAllPosts([user], currentUser);
                 } else {
                     document.querySelector('.js-all-posts').innerHTML = '<h2 class="home-no-results">This user has no posts yet</h2>';
                 }

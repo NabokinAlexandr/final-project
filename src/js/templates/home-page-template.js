@@ -1,9 +1,11 @@
 function homePageTemplate(posts, currentUser) {
     return `${posts.map(post => {
         return `
-        <article class='user-post post' id=${post.id} data-id=${post.authorID}>
+        <article class='user-post post' id=${post.id}>
             <div class='post-cover'>
-                <img class=${post.userPic.trim() === '' ? 'post-userpic_default' : 'post-userpic'} src=${post.userPic} alt=${post.heading}>
+                <div class='post-userpic'
+                    style="background: ${post.userPic.trim() !== '' ? `url(${post.userPic})` : 'rgba(70, 72, 74, .3)'}; background-size: cover;"
+                ></div>
                 <span class='post-author'>${post.author}</span>
                 <span class='post-heading'>${post.heading}</span>
                 <span class='likes-count'>${post.likes.length}</span>
@@ -14,7 +16,7 @@ function homePageTemplate(posts, currentUser) {
                     })}
                 </ul>
             </div>
-            <img class='post-img' src=${post.pic}>
+            <img class='post-img' src=${post.pic} alt=${post.heading}>
         </article>`;
     })}`;
 } 

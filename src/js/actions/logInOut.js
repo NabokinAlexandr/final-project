@@ -1,22 +1,38 @@
 import {Apis} from '../api/api.js';
-import {mapAllUsersPosts} from './mapAllUsersPosts.js';
+import {homePageAllPosts} from './homePageAllPosts.js';
+import {openModal, closeModal} from './commonActions.js';
+import {createUserPage} from './createUserPage.js';
 (function() {
-    function passAuthentification(name, pass) {
+    function userAuthentification(name, pass) {
         const api = new Apis(),
         p = document.createElement('p'),
         messageBlock = document.querySelector('#js-login-form .js-login-form-message');
+        let users, currentUser;
         while (messageBlock.hasChildNodes()) {
             messageBlock.removeChild(messageBlock.firstChild);
         }
         api.getUsers()
         .then (
             resp => {
-                const currentUser = resp.data.filter(user => user.name === name && user.pass === pass);
+                users = resp.data,
+                currentUser = users.filter(user => user.name === name && user.pass === pass);
                 if (currentUser.length > 0) {
                     api.setCurrentUser(currentUser[0]);
-                    document.querySelector('.js-first-screen').classList.add('hidden');
+                } 
+            }
+        )
+        .then ( 
+            () => {
+                if (currentUser.length > 0) {
+                    if (window.location.hash.substr(1).replace('/#', '').includes('user_')) {
+                        location.replace(`http://localhost:3000/#user_${currentUser[0].id}`);
+                        createUserPage(currentUser[0]);
+                    }
+                    if (window.location.hash.substr(1).replace('/#', '') === 'home' || window.location.hash.substr(1) === '') {
+                        homePageAllPosts(users, currentUser[0]);
+                    }
+                    closeModal(document.querySelector('.js-first-screen'));
                     document.querySelector('#modal-login').classList.add('hidden');
-                    mapAllUsersPosts(resp.data, currentUser);
                 } else {
                     p.innerHTML = 'User credentials are invalid. Please, check your password and name';
                     p.classList.add('error');
@@ -33,15 +49,18 @@ import {mapAllUsersPosts} from './mapAllUsersPosts.js';
             resp => {
                 const currentUser = resp.data[0];
                 api.removeCurrentUser(currentUser.id);
-                document.querySelector('.js-first-screen').classList.remove('hidden');
             }
         )
-        .then (() => location.replace('http://localhost:3000'))
+        .then (
+            () => {
+                openModal(document.querySelector('.js-first-screen'));
+            }
+        )
         .catch(err => console.error(new Error(err)));
     }
     document.querySelector('#js-login-form').addEventListener('submit', function(event) {
         event.preventDefault();
-        passAuthentification(document.querySelector('#js-login-name').value, document.querySelector('#js-login-pass').value);
+        userAuthentification(document.querySelector('#js-login-name').value, document.querySelector('#js-login-pass').value);
     });
     document.querySelector('#js-logout').addEventListener('click', function(){
         logOut();

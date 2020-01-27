@@ -1,7 +1,7 @@
 import {Apis} from '../api/api.js';
 import {editUser} from './editUser.js';
-import {mapUserData} from './mapUserData.js';
-import {mapAllUsersPosts} from './mapAllUsersPosts.js';
+import {createUserPage} from './createUserPage.js';
+import {homePageAllPosts} from './homePageAllPosts.js';
 import {search} from './search.js';
 function editTargetUser(user) {
     const api = new Apis();
@@ -33,6 +33,7 @@ function toggleLike(target, currentUser) {
             const targetPost = user.posts.filter(p => p.id === post.id);
             if (targetPost.length > 0) {
                 const likeToCheck = targetPost[0].likes.filter(like => like === likeID);
+                console.log(targetPost[0].likes);
                 if (likeToCheck.length > 0) {
                     const idx = targetPost[0].likes.indexOf(likeToCheck[0]);
                     targetPost[0].likes.splice(idx, 1);

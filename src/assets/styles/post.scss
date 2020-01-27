@@ -1,22 +1,28 @@
+@mixin hide-text($width) {
+    width: $width; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+    overflow: hidden;
+}
 .post {
     position: relative;
     width: 350px;
     height: 350px;
+    background-color: $black;
     overflow: hidden;
     border-radius: 8px;
-    margin: 30px 18px 30px 0;
+    margin: 18px 18px 0 0;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     &:nth-child(3n) {
-        margin: 30px 0;
+        margin: 18px 0 0;
     }
     &_user-page {
         height: 400px;
         border: 2px solid $light-grey;
         border-radius: 4px;
-        margin: 10px;
     }
 
     &-img {
@@ -40,21 +46,11 @@
         width: 60px;
         height: 60px;
     }
-    &-userpic_default {
-        &::after {
-            content: '';
-            border: 1px solid $white;
-            border-radius: 50%;
-            display: block;
-            width: 60px;
-            height: 60px;
-            background-color: $default;
-        }
-    }
     &-heading {
         color: $white;
         padding-top: 6px;
         padding-left: 6px;
+        @include hide-text(80%);
     }
     &-author {
         color: $white;
@@ -73,7 +69,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: flex-end;
         background-color: $white;
         cursor: default;
     }
@@ -81,6 +77,8 @@
         font-size: 24px;
         font-family: $fontLight;
         width: 100%;
+        padding: 0 0 20px 0;
+        @include hide-text(100%);
     }
     .likes-count {
         color: $white;
@@ -93,9 +91,8 @@
     }
     &-delete-btn {
         position: relative;
-        top: 16px;
         background-image: url(./img/remove-btn.svg);
-        background-size: contain;
+        background-size: cover;
         width: 30px;
         height: 30px;
         cursor: pointer;

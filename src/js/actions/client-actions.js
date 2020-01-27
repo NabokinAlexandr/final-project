@@ -2,7 +2,7 @@ import {closeModal, openModal, openPhoto} from './commonActions.js';
 import {toggleLike} from './postToggleLike.js';
 import {Apis} from '../api/api.js';
 import {search} from './search.js';
-import {mapAllUsersPosts} from './mapAllUsersPosts.js';
+import {homePageAllPosts} from './homePageAllPosts.js';
 import {filter} from './filter.js';
 function createClientEvents() {
     const api = new Apis();
@@ -15,8 +15,8 @@ function createClientEvents() {
                 toggleLike(event.target, currentUser);
             }
             if (event.target.classList.contains('post-cover')) {
-                const popup = document.querySelector('#modal-post'),
-                modal = document.querySelector('#modal-post .modal-content');
+                const popup = document.querySelector('#modal-photo'),
+                modal = document.querySelector('#modal-photo .modal-content');
                 openPhoto(event.target, popup, modal);
             }
         });

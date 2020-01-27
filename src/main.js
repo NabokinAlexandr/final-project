@@ -2,10 +2,10 @@ import './js/actions/menu.js';
 import './js/router/router-initiation.js';
 import './js/actions/addUser.js';
 import './js/actions/logInOut.js';
-import './js/actions/mapUserData.js';
+import './js/actions/createUserPage.js';
 import {Apis} from './js/api/api.js';
-import {mapUserData} from './js/actions/mapUserData.js';
-import {mapAllUsersPosts} from './js/actions/mapAllUsersPosts.js';
+import {createUserPage} from './js/actions/createUserPage.js';
+import {homePageAllPosts} from './js/actions/homePageAllPosts.js';
 import './js/actions/hashChange.js';
 import {closeModal, openModal} from './js/actions/commonActions.js';
 (function() {
@@ -22,8 +22,8 @@ import {closeModal, openModal} from './js/actions/commonActions.js';
         document.querySelector('.js-login-close').addEventListener('click', function() {
             closeModal(document.querySelector('#modal-login'));
         });
-        document.querySelector('.js-post-close').addEventListener('click', function() {
-            closeModal(document.querySelector('#modal-post'));
+        document.querySelector('.js-photo-close').addEventListener('click', function() {
+            closeModal(document.querySelector('#modal-photo'));
         });
         const api = new Apis();
         api.getCurrentUser()
@@ -32,7 +32,7 @@ import {closeModal, openModal} from './js/actions/commonActions.js';
                 closeModal(document.querySelector('.js-first-screen'));
                 if (window.location.hash.substr(1).replace('/#', '').includes('user_')) {
                     location.replace(`http://localhost:3000/#user_${resp.data[0].id}`);
-                    mapUserData(resp.data[0]);
+                    createUserPage(resp.data[0]);
                 }
             } else {
                 openModal(document.querySelector('.js-first-screen'));
@@ -43,7 +43,7 @@ import {closeModal, openModal} from './js/actions/commonActions.js';
             api.getUsers()
             .then(resp => {
                 if (resp.data.length > 0) {
-                    mapAllUsersPosts(resp.data);
+                    homePageAllPosts(resp.data);
                 } else {
                     return;
                 }

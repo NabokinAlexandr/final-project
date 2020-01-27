@@ -1,5 +1,5 @@
-import {mapUserData} from './mapUserData.js';
-import {mapAllUsersPosts} from './mapAllUsersPosts.js';
+import {createUserPage} from './createUserPage.js';
+import {homePageAllPosts} from './homePageAllPosts.js';
 import {Apis} from '../api/api.js';
 (function() {
     window.addEventListener('hashchange', function() {
@@ -9,10 +9,10 @@ import {Apis} from '../api/api.js';
             .then(resp => {
                 if (resp.data.length > 0) {
                     location.replace(`http://localhost:3000/#user_${resp.data[0].id}`);
-                    mapUserData(resp.data[0]);
+                    createUserPage(resp.data[0]);
                 } else {
                     location.replace(`http://localhost:3000/#user_unknown`);
-                    mapUserData();
+                    createUserPage();
                 }
             })
             .catch(err => console.error(new Error(err)));
@@ -22,7 +22,7 @@ import {Apis} from '../api/api.js';
             api.getUsers()
             .then(resp => {
                 if (resp.data.length > 0) {
-                    mapAllUsersPosts(resp.data);
+                    homePageAllPosts(resp.data);
                 } else {
                     return;
                 }

@@ -1,7 +1,7 @@
 import {Post} from '../libs/post.js';
 import {Validator} from '../libs/validator.js';
 import {editUser} from './editUser.js';
-import {mapUserData} from './mapUserData.js';
+import {createUserPage} from './createUserPage.js';
 import {Apis} from '../api/api.js';
 import {closeModal, openModal, openPhoto} from './commonActions.js';
 import {toggleLike} from './postToggleLike.js';
@@ -23,7 +23,7 @@ function createPost(user) {
         reader.onload = () => {
             user.posts.push(new Post(reader.result, formatedDate, heading, `post_${date.getTime()}`, tags));
             editUser(user);
-            mapUserData(user);
+            createUserPage(user);
         };
         reader.onerror = () => console.error(new Error(reader.error));
     } else {
@@ -66,7 +66,7 @@ function changeUserPic(user) {
         reader.onload = () => {
             user.userPic = reader.result;
             editUser(user);
-            document.querySelector('#modal-profile .js-u-pic').src = user.userPic;
+            document.querySelector('#modal-profile .user-pic-small').src = user.userPic;
         };
         reader.onerror = () => console.error(new Error(reader.error));
     }
@@ -150,7 +150,7 @@ function addUserWallpaper(input, user) {
         reader.onload = () => {
             user.wallpaper = reader.result;
             editUser(user);
-            mapUserData(user);
+            createUserPage(user);
         };
         reader.onerror = () => console.error(new Error(reader.error));
     }
@@ -166,15 +166,15 @@ function createEvents(user) {
     document.querySelector('.js-post-list').addEventListener('click', function(event) {
         if (event.target.classList.contains('js-remove-post')) {
             removePost(event.target, user);
-            mapUserData(user);
+            createUserPage(user);
         }
         if (event.target.classList.contains('like-default')
         || event.target.classList.contains('like-active')) {
             toggleLike(event.target, user);
         }
         if (event.target.classList.contains('post-img')) {
-            const popup = document.querySelector('#modal-post'),
-            modal = document.querySelector('#modal-post .modal-content');
+            const popup = document.querySelector('#modal-photo'),
+            modal = document.querySelector('#modal-photo .modal-content');
             openPhoto(event.target, popup, modal);
         }
     });
@@ -183,7 +183,7 @@ function createEvents(user) {
         closeModal(document.querySelector('#modal-profile'));
         const api = new Apis();
         api.getCurrentUser()
-        .then((resp) => resp.data.length > 0 ? mapUserData(resp.data[0]) : mapUserData())
+        .then((resp) => resp.data.length > 0 ? createUserPage(resp.data[0]) : createUserPage())
         .catch(err => console.error(new Error(err)));
     };
     document.querySelector('.js-user-info').addEventListener('click', function() {

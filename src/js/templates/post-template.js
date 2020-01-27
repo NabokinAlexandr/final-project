@@ -1,5 +1,5 @@
 function postTemplate(user) {
-    return `${user.posts.map(post => {
+    return `${user.posts.reverse().map(post => {
         return `
         <article class='user-post post post_user-page' id=${post.id}>
             <img class='post-img' src=${post.pic} alt=${post.heading}>

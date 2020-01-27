@@ -1,6 +1,7 @@
 import {Validator} from '../libs/validator.js';
 import {User} from '../libs/user.js';
 import {Apis} from '../api/api.js';
+import {closeModal} from './commonActions.js';
 (function() {
     function createUser(name, pass) {
         const id = `id_${(new Date()).getTime()}`,
@@ -13,8 +14,8 @@ import {Apis} from '../api/api.js';
             })
         .then(
             () => {
-                document.querySelector('#js-reg').classList.add('hidden');
-                document.querySelector('.js-first-screen').classList.add('hidden');
+                document.querySelector('#modal-reg').classList.add('hidden');
+                closeModal(document.querySelector('.js-first-screen'));
             })
         .catch(err => console.error(new Error(err)));
     }
@@ -25,7 +26,7 @@ import {Apis} from '../api/api.js';
         nameValidator = new Validator(name, 'Name'),
         passValidator = new Validator(pass, 'Password'),
         nameIsValid = nameValidator.validate(),
-        passIsValid = passValidator.validate(),
+        passIsValid = passValidator.validate(), 
         passIsEqual = pass === passConfirmed,
         messageBlock = document.querySelector('#js-reg-form .js-reg-form-message'),
         p = document.createElement('p');
