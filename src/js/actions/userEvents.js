@@ -102,7 +102,7 @@ function changeUserPass(user) {
 }
 function changeUserProfile(user) {
     const userName = document.querySelector('.js-change-user-name').value,
-    userInfo = document.querySelector('.js-user-info').value,
+    userInfo = document.querySelector('.js-change-user-info .js-user-info').value,
     messageBlock = document.querySelector('.js-change-user-info .js-user-form-message'),
     p = document.createElement('p');
     p.innerHTML = 'Your profile was updated!';
