@@ -6,6 +6,7 @@
     &-paragraph {
         line-height: 1.5;
         padding: 20px 0;
+        text-align: justify;
     }
     &-heading {
         font-family: $fontMedium;
@@ -19,6 +20,7 @@
         padding: 20px 20px 40px 20px;
         line-height: 1.5;
         font-family: $fontMedium;
+        text-align: justify;
         &::before {
             content: '＂';
             display: inline-block;

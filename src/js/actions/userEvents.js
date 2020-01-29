@@ -218,6 +218,7 @@ function createEvents(user) {
     });
     document.querySelector('.js-post-close').addEventListener('click', function() {
         closeModal(document.querySelector('#post-modal'));
+        document.querySelector('body').classList.remove('fixed');
     });
 }
 export {createEvents, openPhoto};

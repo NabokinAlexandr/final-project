@@ -11,14 +11,11 @@
     background-color: $black;
     overflow: hidden;
     border-radius: 8px;
-    margin: 18px 18px 0 0;
+    margin: 18px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    &:nth-child(3n) {
-        margin: 18px 0 0;
-    }
     &_user-page {
         height: 400px;
         border: 2px solid $light-grey;
@@ -92,7 +89,8 @@
     &-delete-btn {
         position: relative;
         background-image: url(./img/remove-btn.svg);
-        background-size: cover;
+        background-size: contain;
+        background-repeat: no-repeat;
         width: 30px;
         height: 30px;
         cursor: pointer;

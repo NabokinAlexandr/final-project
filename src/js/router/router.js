@@ -19,20 +19,20 @@ class Router {
     }
     hasChanged(scope, r) {
         if (window.location.hash.length > 0) {
-            let isRoute = false;
+            let flag = false;
             for (let i = 0; i < r.length; i++) {
                 const route = r[i];
                 if (route.isActiveRoute(window.location.hash.substr(1))) {
+                    flag = !flag;
                     scope.goToRoute(route.htmlName, route.name);
-                    isRoute = true;
-                }
-                if (isRoute === false 
-                    && !window.location.hash.substr(1).includes('user_')
-                    && !window.location.hash.substr(1).includes('photographer')
-                    && !window.location.hash.substr(1).includes('query')) {
-                    scope.goToRoute('not-found.html', 'not-found');
                 }
             }
+            if (flag === false && !window.location.hash.includes('user_') && 
+                !window.location.hash.includes('photographer') && 
+                !window.location.hash.includes('query')) {
+                scope.goToRoute('not-found.html', 'not-found');
+            }
+            console.log(flag);
         } else {
             for (let i = 0; i < r.length; i++) {
                 const route = r[i];
